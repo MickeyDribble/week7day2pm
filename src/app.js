@@ -8,14 +8,17 @@ const app = async (yargsObj) => {
     if (yargsObj.add) {
         await addMovie(collection, { title: yargsObj.title, actor: yargsObj.actor});
         console.log("Successfully added new document to db")
-    } else if (yargsObj.list) {
-        await listMovies(collection)
+
     } else if (yargsObj.delete) {
         await deleteMovie(collection , { title: yargsObj.title, actor: yargsObj.actor})
         console.log("Successfully deleted from db")
+
     } else if (yargsObj.update) {
-        await updateMovie(collection , { title: yargsObj.title, actor: yargsObj.actor})
+        await updateMovie(collection, yargsObj)
         console.log("Successfully updated an entry from db")
+        
+    } else if (yargsObj.list) {
+        await listMovies(collection)
     } else {
         console.log("incorrect Command")
     }
